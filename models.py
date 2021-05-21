@@ -45,11 +45,13 @@ def feature_vector(x):
     
     # these are derived frequencies to be used as feature vectors
     f.append(FREQ_BD[x['birth_day']]) if x['birth_day'] in FREQ_BD else f.append(0)
-    f.append(FREQ_BM[x['birth_month']])
+    f.append(FREQ_BM[x['birth_month']]) if x['birth_month'] in FREQ_BM else f.append(0)
     f.append(FREQ_BS[x['birth_state']]) if x['birth_state'] in FREQ_BS else f.append(0)
     
+    # adding the politcal party as a feature as well
     f.append(x['political_party'])
 
+    # returns a numpy array for easy model training 
     return np.asarray(f)
 
 # creating numpy arrays for X and Y
