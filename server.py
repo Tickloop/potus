@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, jsonify
 # loading in our model that we will be using
 from models import feature_vector
 import pickle
-dtree_regr = pickle.load('pres_model_2.pkl')
+dtree_regr = pickle.load(open('pres_model_2.pkl', 'rb'))
 
 app = Flask(__name__, template_folder='public', static_folder='public')
 
