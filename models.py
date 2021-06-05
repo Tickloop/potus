@@ -140,9 +140,21 @@ def main():
 import pickle
 
 def save_model():
-    with open('pres_model.pkl', 'wb') as file:
-        pickle.dump(dtree_regr, file)
-
+    model_choice = input('Enter which model to serialize: ')
+   
+    with open(f'pres_model_{model_choice}.pkl', 'wb') as file:
+        if model_choice == "1":
+            pickle.dump(linear_regr, file)
+        elif model_choice == "2":
+            pickle.dump(dtree_regr, file)
+        elif model_choice == "3":
+            pickle.dump(ml_regr, file)
+        elif model_choice == "4":
+            pickle.dump(knn_regr, file)
+        else:
+            print('Invalid selection. Saving Decision Tree as Default')
+            pickle.dump(dtree_regr, file)
+    
 import sys
 
 if '--main' in sys.argv:

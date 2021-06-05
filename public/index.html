@@ -175,7 +175,7 @@
 
             // fetching the data from server
             fetch(`${window.location}potus`, options).then(resp => resp.json()).then(data => {
-                result_div.innerText = `There is a ${data.pred}% chance that you become the next president of USA`;
+                result_div.innerText = `There is a ${data.pred} chance that you become the next president of USA`;
             });
         });
     </script>
