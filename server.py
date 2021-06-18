@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-app = Flask(__name__, template_folder='public')
+app = Flask(__name__, template_folder='public', static_folder='public')
 
 @app.route("/")
 def home():

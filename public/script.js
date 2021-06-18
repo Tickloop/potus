@@ -1,42 +1,38 @@
 class App extends React.Component{
-    state={
+    state = {
         ht:'',
         wt:'',
         bd:'1',
         bm:'1',
         bs:'Alabama',
-        party:'Republican'
-    }
-    handleChange=(e)=>{
-        this.setState({
-            [e.target.id]:e.target.value
-            }
-        )
-    };
-    
-    handleSubmit=(e)=>{
-        console.log(this.state)
-        e.preventDefault()
-        const data = {
-        height_in: this.state.ht,
-        weight_lb: this.state.wt,
-        birth_day: this.state.bd,
-        birth_month: this.state.bm,
-        birth_state: this.state.bs,
-        political_party: this.state.party
-    };
-    
-    // the options for making the POST request to be passed to fetch
-    const options = {
-        method: 'POST',
-        body: JSON.stringify(data)
+        party:'0'
     };
 
-    // fetching the data from server
-    fetch(`${window.location}potus`, options).then(resp => resp.json()).then(data => {
-        result_div.innerText = `There is a ${data.pred}% chance that you become the next president of USA`;
+    handleChange = (e) => this.setState({[e.target.id]: e.target.value});
+        
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const data = {
+            height_in: this.state.ht,
+            weight_lb: this.state.wt,
+            birth_day: this.state.bd,
+            birth_month: this.state.bm,
+            birth_state: this.state.bs,
+            political_party: this.state.party
+        };
+    
+        // the options for making the POST request to be passed to fetch
+        const options = {
+            method: 'POST',
+            body: JSON.stringify(data)
+        };
+
+        // fetching the data from server
+        fetch(`${window.location}potus`, options).then(resp => resp.json()).then(data => {
+            document.getElementById('result').innerText = `There is a ${data.pred}% chance that you become the next president of USA`;
         });
-    }
+    };
+
     render(){
         return(    
             <div className="app-content">
@@ -175,4 +171,4 @@ class App extends React.Component{
     }
 }
 
-ReactDOM.render(<App/>, document.getElementById('app'))
+ReactDOM.render(<App/>, document.getElementById('app'));
